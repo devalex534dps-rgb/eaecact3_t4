@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lista de Productos · Mono Bands</title>
+    <!--
+      Mono bands · INDIGO WHITE #EBF6F7 · SILVER GREY #AFAFB0 · CHARCOAL #524E4D · INK BLACK #1C1C1C
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400..700&family=Geist+Mono:wght@400..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css" th:href="@{/css/styles.css}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+
+<div class="gradient" role="img" aria-label="Mono bands">
+
+</div>
+
+<main class="container mono-wrapper">
+    <section class="mono-panel">
+        <div class="d-flex flex-wrap justify-content-between align-items-end mb-4 gap-3">
+            <div>
+                <div class="mono-eyebrow">Inventario · Producto ↔ Categoría</div>
+                <h2 class="mono-title">Lista de Productos</h2>
+            </div>
+            <a th:href="@{/nuevo}" class="btn btn-mono-primary">+ Nuevo Producto</a>
+        </div>
+
+        <div class="mono-table-wrap">
+            <table class="table table-mono">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Categoría</th>
+                        <th class="text-end">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="p : ${productos}">
+                        <td class="mono-code" th:text="${p.id}"></td>
+                        <td class="fw-semibold" th:text="${p.nombre}"></td>
+                        <td class="mono-code" th:text="${p.precio}"></td>
+                        <td class="mono-code" th:text="${p.stock}"></td>
+                        <td>
+                            <span class="badge-categoria" th:text="${p.categoriaNombre}"></span>
+                        </td>
+                        <td class="text-end">
+                            <div class="d-inline-flex gap-2">
+                                <a th:href="@{/detalle/{id}(id=${p.id})}" class="btn btn-mono-detail">Ver Detalle</a>
+                                <a th:href="@{/editar/{id}(id=${p.id})}" class="btn btn-mono-edit">Editar</a>
+                                <a th:href="@{/eliminar/{id}(id=${p.id})}"
+                                   th:attr="data-nombre=${p.nombre}"
+                                   class="btn btn-mono-delete"
+                                   onclick="return confirmarEliminacion(event, this);">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(productos)}">
+                        <td colspan="6" class="text-center py-4" style="color: var(--charcoal);">
+                            No hay productos registrados.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<script>
+    function confirmarEliminacion(event, elemento) {
+        event.preventDefault();
+        const url = elemento.getAttribute('href');
+        const nombreProducto = elemento.getAttribute('data-nombre') || 'este producto';
+
+        Swal.fire({
+            title: '¿Eliminar producto?',
+            html: 'Se eliminará <strong>' + nombreProducto + '</strong> de forma permanente.',
+            icon: 'warning',
+            iconColor: '#524E4D',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true,
+            backdrop: 'rgba(28, 28, 28, 0.58)',
+            customClass: {
+                popup: 'swal-mono-popup',
+                title: 'swal-mono-title',
+                htmlContainer: 'swal-mono-html',
+                confirmButton: 'swal-mono-confirm',
+                cancelButton: 'swal-mono-cancel'
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = url;
+            }
+        });
+
+        return false;
+    }
+</script>
+
+</body>
+</html>
