@@ -9,15 +9,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/eaecact3")
 public class ProductoController {
 
     @Autowired
     private ProductoService productoService;
 
     // 1. LISTAR PRODUCTOS
-    @GetMapping({ "/productos" })
+    @GetMapping({ "", "/", "/productos" })
     public String listar(Model model) {
         model.addAttribute("productos", productoService.listarTodos());
         return "index";
@@ -35,7 +37,7 @@ public class ProductoController {
     @PostMapping({ "/guardar", "/productos/guardar" })
     public String guardar(@ModelAttribute("producto") ProductoDTO productoDTO) {
         productoService.guardar(productoDTO);
-        return "redirect:/productos";
+        return "redirect:/eaecact3";
     }
 
     // 4. MOSTRAR FORMULARIO DE EDICION
@@ -52,14 +54,14 @@ public class ProductoController {
     public String actualizar(@PathVariable Integer id, @ModelAttribute("producto") ProductoDTO productoDTO) {
         productoDTO.setId(id);
         productoService.guardar(productoDTO);
-        return "redirect:/productos";
+        return "redirect:/eaecact3";
     }
 
     // 6. ELIMINAR PRODUCTO
     @GetMapping({ "/eliminar/{id}", "/productos/eliminar/{id}" })
     public String eliminar(@PathVariable Integer id) {
         productoService.eliminar(id);
-        return "redirect:/productos";
+        return "redirect:/eaecact3";
     }
 
     // 7. MOSTRAR DETALLE DE PRODUCTO
