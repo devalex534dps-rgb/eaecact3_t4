@@ -1,4 +1,4 @@
-# Act2. Spring MVC - Vistas con Thymeleaf, DTOs y Manejo de Peticiones
+# Act3. CRUD en Spring Boot y Relaciones
 
 Proyecto CRUD Backend con vistas (thymeleaf) para el frontend, con conexion a base de datos.
 
