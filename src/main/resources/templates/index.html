@@ -404,7 +404,7 @@
                     <div class="mono-eyebrow">Inventario · Producto ↔ Categoría</div>
                     <h2 class="mono-title">Lista de Productos</h2>
                 </div>
-                <a th:href="@{/eaecact3/nuevo}" class="btn btn-mono-primary">+ Nuevo Producto</a>
+                <a th:href="@{/productos/nuevo}" class="btn btn-mono-primary">+ Nuevo Producto</a>
             </div>
 
             <div class="mono-table-wrap">
@@ -430,11 +430,13 @@
                             </td>
                             <td class="text-end">
                                 <div class="d-inline-flex gap-2">
-                                        th:href="@{/eaecact3/detalle/{id}(id=${p.id})}" class="btn btn-mono-detail">Ver
-                                        Detalle</a>
-                                    <a th:href="@{/eaecact3/editar/{id}(id=${p.id})}"
+
+                                    <a th:href="@{/productos/detalle/{id}(id=${p.id})}" class="btn btn-mono-detail">
+                                        Ver detalle
+                                    </a>
+                                    <a th:href="@{/productos/editar/{id}(id=${p.id})}"
                                         class="btn btn-mono-edit">Editar</a>
-                                    <a th:href="@{/eaecact3/eliminar/{id}(id=${p.id})}"
+                                    <a th:href="@{/productos/eliminar/{id}(id=${p.id})}"
                                         th:attr="data-nombre=${p.nombre}" class="btn btn-mono-delete"
                                         onclick="return confirmarEliminacion(event, this);">Eliminar</a>
                                 </div>

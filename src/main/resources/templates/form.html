@@ -405,7 +405,7 @@
                 Formulario de Producto</h2>
 
             <form id="productoForm"
-                th:action="${producto.id == null} ? @{/eaecact3/guardar} : @{/eaecact3/actualizar/{id}(id=${producto.id})}"
+                th:action="${producto.id == null} ? @{/productos/guardar} : @{/productos/actualizar/{id}(id=${producto.id})}"
                 th:object="${producto}" method="post" novalidate>
 
                 <input type="hidden" th:field="*{id}" />
@@ -440,7 +440,7 @@
 
                 <div class="d-flex gap-2 pt-2">
                     <button type="submit" class="btn btn-mono-save">Guardar</button>
-                    <a th:href="@{/eaecact3}" class="btn btn-mono-cancel">Cancelar</a>
+                    <a th:href="@{/productos}" class="btn btn-mono-cancel">Cancelar</a>
                 </div>
 
             </form>

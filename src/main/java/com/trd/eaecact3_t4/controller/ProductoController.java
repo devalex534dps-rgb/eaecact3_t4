@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/eaecact3")
+@RequestMapping("/productos")
 public class ProductoController {
 
     @Autowired
@@ -37,7 +37,7 @@ public class ProductoController {
     @PostMapping({ "/guardar", "/productos/guardar" })
     public String guardar(@ModelAttribute("producto") ProductoDTO productoDTO) {
         productoService.guardar(productoDTO);
-        return "redirect:/eaecact3";
+        return "redirect:/productos";
     }
 
     // 4. MOSTRAR FORMULARIO DE EDICION
@@ -54,14 +54,14 @@ public class ProductoController {
     public String actualizar(@PathVariable Integer id, @ModelAttribute("producto") ProductoDTO productoDTO) {
         productoDTO.setId(id);
         productoService.guardar(productoDTO);
-        return "redirect:/eaecact3";
+        return "redirect:/productos";
     }
 
     // 6. ELIMINAR PRODUCTO
     @GetMapping({ "/eliminar/{id}", "/productos/eliminar/{id}" })
     public String eliminar(@PathVariable Integer id) {
         productoService.eliminar(id);
-        return "redirect:/eaecact3";
+        return "redirect:/productos";
     }
 
     // 7. MOSTRAR DETALLE DE PRODUCTO

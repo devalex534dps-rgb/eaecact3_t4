@@ -440,10 +440,10 @@
 
             <footer class="mono-footer d-flex justify-content-between align-items-center flex-wrap gap-2">
                 <div class="d-flex gap-2">
-                    <a th:href="@{/eaecact3/editar/{id}(id=*{id})}" class="btn btn-mono-edit">Editar</a>
-                    <a th:href="@{/eaecact3}" class="btn btn-mono-back">Volver al listado</a>
+                    <a th:href="@{/productos/editar/{id}(id=*{id})}" class="btn btn-mono-edit">Editar</a>
+                    <a th:href="@{/productos}" class="btn btn-mono-back">Volver al listado</a>
                 </div>
-                    th:attr="data-nombre=*{nombre}" class="btn btn-mono-delete"
+                <a th:attr="data-nombre=*{nombre}" class="btn btn-mono-delete"
                     onclick="return confirmarEliminacionDetalle(event, this);">Eliminar</a>
             </footer>
         </section>
